@@ -50,10 +50,4 @@ function orderPizzaForEveryone(){
     orderPizza('golden', 'students');
 }
 
-function makeCustomersHappy($do_it) {
-if ($do_it) {
-    orderPizzaForEveryone();
-}
-}
-
-makeCustomersHappy(true);
+orderPizzaForEveryone();
