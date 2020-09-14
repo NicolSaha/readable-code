@@ -1,15 +1,9 @@
 <?php
 
-// fw = for who
-function orderPizza($pizzatype, $customer) {
+function orderPizza($pizzaType, $customer) {
+$price = calculatePrice($pizzaType);
 
-$type = $pizzatype;
-echo 'Creating new order... <br>';
-$pizzaOrder = 'A ';
-$pizzaOrder .= $pizzatype;
-$prive = calc_cts($type);
-
-$address = 'unknown';
+$address = '';
     if($customer == 'koen'){
         $address = 'a yacht in Antwerp';
     } elseif ($customer == 'manuele'){
@@ -18,47 +12,42 @@ $address = 'unknown';
         $address = 'BeCode office';
     }
 
-$pizzaOrder .=   ' pizza should be sent to ' . $customer . ". <br>The address: {$address}.";
-echo $pizzaOrder; echo '<br>';
-echo'The bill is €'.$price.'.<br>';
-echo "Order finished.<br><br>";
+echo 'Creating new order... <br>';
+echo "A {$pizzatype} pizza should be sent to {$customer}. <br>";
+echo "The address: {$address}. <br>";
+echo "The bill is €{$price}. <br>";
+echo 'Order finished.<br>';
 }
 
 function total_price($price) {
     return $price;
     }
 
-function test($pizzaType) {
-    echo "Test: type is {$pizzaType}. <br>";
-    }
-
-function calc_cts($pizzaType){
-    $pizzaCost = 'unknown';
+function calculatePrice($pizzaType){
+    $pizzaPrice = 'unknown';
 
     if ($pizzaType == 'marguerita') {
-        $pizzaCost = 5;
+        $pizzaPrice = 5;
     }
     else
         {
         if ($pizzaType == 'golden'){
-            $pizzaCost = 100;
-            }
+            $pizzaPrice = 100;
+        }
         if ($pizzaType == 'calzone'){
-                $pizzaCost = 10;
-            }
+            $pizzaPrice = 10;
+        }
         if ($pizzaType == 'hawai') {
             throw new Exception('Computer says no');
-            }
+        }
     }
-
-    return $pizzaCost;
+    return $pizzaPrice;
 }
 
 function orderPizzaForEveryone(){
-$test= 0;
-orderPizza('calzone', 'koen');
-orderPizza('marguerita', 'manuele');
-orderPizza('golden', 'students');
+    orderPizza('calzone', 'koen');
+    orderPizza('marguerita', 'manuele');
+    orderPizza('golden', 'students');
 }
 
 function makeCustomersHappy($do_it) {
